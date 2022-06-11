@@ -1,10 +1,12 @@
 import { useState, useRef } from "react";
 import * as axios from 'axios';
+import Link from "next/link";
 //import { useRouter } from "next/router";
 import Router from 'next/router';
 
 function Product(props) {
-  const [message, setMessage] = useState('');
+  const [orderId, setOrderId] = useState('');
+  const[message,setMessage]=useState('')
   const {
     id,
     name,
@@ -26,8 +28,10 @@ function Product(props) {
     });
     //should post in the notifications too
     if (data) {
+      setOrderId(data.id);
+      setMessage(`Success! Your order number is: ${data.id}`)
+     
       
-      setMessage(`Success! Your order number is: ${data.id}`);
     }
   };
 
@@ -51,14 +55,36 @@ function Product(props) {
             <button
               className="border p-2 mb-8 border-black shadow-offset-lime w-2/3 font-bold"
               //onClick={(e) => handleNewOrder(e)}
-              onClick={() => Router.push('/payments')}
+              onClick={(e) => handleNewOrder(e)}
+              //{() => Router.push('/payments')} 
             >
+             
               Order This Product
             </button>
+            <div>
+            <span className="text-red-600 leading-7 font-bold mt-3">
+              {message}
+            </span>
+          </div>
+  
           </div>
           <div>
             <span className="text-red-600 leading-7 font-bold mt-3">
-              {message}
+            <div className="mt-12 flex flex-row justify-between ">
+            <Link href="/payments">
+            <button
+              className="border p-2 mb-8 border-black shadow-offset-lime w-2/3 font-bold"
+              //onClick={(e) => handleNewOrder(e)}
+              onClick={(e) => handleNewOrder(e)}
+              //{() => Router.push('/payments')}
+            >
+              proceed to payment
+            </button>
+            </Link>
+          </div>
+              
+              
+
             </span>
           </div>
         </div>

@@ -21,7 +21,6 @@ function Layout({ children }) {
       <header>
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
-            <SearchBar></SearchBar>
             <div className="w-full text-green-700 md:text-center text-3xl font-bold">
               RABBIT MART 
             </div>
