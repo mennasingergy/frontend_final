@@ -46,5 +46,6 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   }
+  //https://anonymous-products-git-master-faridaabouward.vercel.app/api/products
 }
 export default ProductPageContainer;
