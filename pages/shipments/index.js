@@ -29,7 +29,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://anonymous-shipments.vercel.app/api/shipments/323"
+            href="/shipments/cancel"
             className={styles.card}
           >
             <h2>Cancel Shipment &rarr;</h2>

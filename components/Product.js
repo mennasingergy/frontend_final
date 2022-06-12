@@ -3,12 +3,14 @@ import * as axios from 'axios';
 import Link from "next/link";
 //import { useRouter } from "next/router";
 import Router from 'next/router';
-
+//var data2;
 function Product(props) {
   const [orderId, setOrderId] = useState('');
   const[message,setMessage]=useState('')
+  const [orderIds, setOrderIds] = useState('');
+  //const [shipmentStatus, setShipmentStatus] = useState('');
   const {
-    id,
+    order_id,
     name,
     size,
     image,
@@ -25,14 +27,24 @@ function Product(props) {
     const { data } = await axios.default.post('https://anonymous-orders-microservice-opal.vercel.app/api/orders', {
       name,
       price,
+      order_id
+    });
+    const { data2 } = await axios.default.post('http://localhost:3000/api/shipments', {
+  
     });
     //should post in the notifications too
     if (data) {
-      setOrderId(data.id);
-      setMessage(`Success! Your order number is: ${data.id}`)
-     
+      setOrderId(data.order_id);
+      setOrderIds(data.order_id);
+      setMessage(`Success! Your order number is: ${data.order_id}`)
+       //await axios.default.post('http://localhost:3000/api/shipments')
+       
+        
+       
+      //setOrderIds(data2.order_id)
       
     }
+  
   };
 
   
