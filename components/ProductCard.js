@@ -12,6 +12,7 @@ function ProductCard({
   category,
   measurement,
   weight,
+  order_status
 }) {
   const router = useRouter();
 

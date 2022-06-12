@@ -1,37 +1,22 @@
 import { useState} from "react";
 import * as axios from 'axios';
-import { Axios } from "axios";
-import expandTailwindAtRules from "tailwindcss/lib/lib/expandTailwindAtRules";
 
 
-function ShipmentStatus() {
+function CancelOrder() {
     const [shipmentStatus, setShipmentStatus] = useState('');
     const [orderId, setOrderId] = useState('');
+  
 
     const handleSubmit= async (e) => {
-        const { data } = await axios.default.get(`http://localhost:3000/api/shipments/${orderId}`)
+        const { data } = await axios.default.delete(`http://localhost:5000/api/shipments/${orderId}`)
+            
            
         //should post in the notifications too
         if (data) {
             setShipmentStatus(data.shipment_status);
-           // while(data.order_id){
-            await axios.default.patch(`http://localhost:3000/api/shipments/${data.order_id}`);
-           // const x=setTimeout(await axios.default.patch(`http://localhost:3000/api/shipments/${data.order_id}`),3000);
-            //clearTimeout(x);
-            //}
-        
-        
-          //  }
+            
         }
-
-   
-       
-
-}
-        
-
-
-    
+    };
 
 
     return (
@@ -59,4 +44,4 @@ function ShipmentStatus() {
 }
 
 
-export default ShipmentStatus;
+export default CancelOrder;

@@ -57,7 +57,12 @@ function Layout({ children }) {
               </Link>
               <Link href="/shipments">
                 <button className="border font-mono p-2 w-1/3 bg-lime-300 border-green shadow-offset-black lg:w-24 lg:mr-8">
-                  Your Shipments
+                  Shipments
+                </button>
+              </Link>
+              <Link href="/orders">
+                <button className="border font-mono p-2 w-1/3 bg-lime-300 border-green shadow-offset-black lg:w-24 lg:mr-8">
+                  Orders
                 </button>
               </Link>
             </div>

@@ -5,17 +5,17 @@ import expandTailwindAtRules from "tailwindcss/lib/lib/expandTailwindAtRules";
 
 
 function ShipmentStatus() {
-    const [shipmentStatus, setShipmentStatus] = useState('');
+    const [OrderStatus, setOrderStatus] = useState('');
     const [orderId, setOrderId] = useState('');
 
     const handleSubmit= async (e) => {
-        const { data } = await axios.default.get(`http://localhost:3000/api/shipments/${orderId}`)
+        const { data } = await axios.default.get(`http://localhost:5000/api/orders/${orderId}`)
            
         //should post in the notifications too
         if (data) {
-            setShipmentStatus(data.shipment_status);
+            setOrderStatus(data.order_status);
            // while(data.order_id){
-            await axios.default.patch(`http://localhost:3000/api/shipments/${data.order_id}`);
+            await axios.default.patch(`http://localhost:5000/api/orders/${data.order_id}`);
            // const x=setTimeout(await axios.default.patch(`http://localhost:3000/api/shipments/${data.order_id}`),3000);
             //clearTimeout(x);
             //}

@@ -5,13 +5,16 @@ import * as axios from 'axios';
 function CancelShipment() {
     const [shipmentStatus, setShipmentStatus] = useState('');
     const [orderId, setOrderId] = useState('');
+  
 
     const handleSubmit= async (e) => {
         const { data } = await axios.default.delete(`http://localhost:3000/api/shipments/${orderId}`)
+            
            
         //should post in the notifications too
         if (data) {
             setShipmentStatus(data.shipment_status);
+            
         }
     };
 

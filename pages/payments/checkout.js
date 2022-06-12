@@ -1,6 +1,12 @@
+/*// import Head from 'next/head'
+// import Image from 'next/image'
+//import styles from '../styles/Home.module.css'
+
+// import React, { Component } from 'react'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link } from 'next/link'
+// import { useRouter } from "next/router"
 import axios from 'axios'
 
 const checkout = () => {
@@ -19,34 +25,37 @@ const checkout = () => {
       return initialValue;
     }
   };
-  
-  const [selectedProduct, setSelectedProduct] = useState(() => initialize())
 
+  const [selectedProduct, setSelectedProduct] = useState(() => initialize())
+// useEffect(() => {
+//   setSelectedProduct(initialize())
+//     // JSON.parse(localStorage.getItem("selectedProduct")))
+// }, []);
+  
+  //var selectedProduct = localStorage.getItem('selectedProduct')
+  
   const [charged, setCharged] = useState('')
   const [receipt_url, setReceipt_url] = useState('')
   const [email, setEmail] = useState('')
   const [stripeEmail, setStripeEmail] = useState('')
-  const [email_n, setEmailN] = useState('');
-  const [orderId, setOrderId] = useState('');
   
+  // const router = useRouter();
+  // const query = router.query;
+  // const [selectedProduct, setSelectedProduct] = useState(query) 
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     if (selectedProduct === null) history.push('/')
    //const { token } = await stripe.createToken()
    try {
-      setCharged('')
-      setReceipt_url('')
-      setStripeEmail('')
-
-      // const order = await axios.post('http://localhost:7000/stripe/charge', {
-      const order = await axios.post('https://payment-ms-noorabouelhoda.vercel.app/api/stripe/charge', {
+      const order = await axios.post('http://localhost:7000/stripe/charge', {
         amount: selectedProduct.price.toString().replace('.', ''),
         source: "tok_visa",
         receipt_email: email //'customer@example.com'
       })
-      setCharged(order.data.message)
-      setReceipt_url(order.data.charge.receipt_url)
-      setStripeEmail(order.data.charge.receipt_email)
+      setCharged("")
+      setReceipt_url("")
+      setStripeEmail("")
     }
     catch(error) {
         if (error.response) {
@@ -77,11 +86,6 @@ const checkout = () => {
      )
    }
  }
- const handleSubmit_n= async (e) => {
-  const { data } = await axios.default.post('https://anonynomous-notification-microservice.vercel.app/api/notifications')
-  //should post in the notifications too
-  
-}
 
     return (
      <div className="checkout-form">
@@ -89,7 +93,7 @@ const checkout = () => {
            <p>{charged}</p>
            <p>{stripeEmail}</p>
            {stripeEmail && <a href={receipt_url}>View Receipt</a>}
-          <form name="card" onSubmit={handleSubmit}  >
+          <form name="card" onSubmit={handleSubmit}>
             <label>
               Email
               <input type="email" value={email} size="30" placeholder="Email"
@@ -109,22 +113,11 @@ const checkout = () => {
               CVC
               <input type="number" required maxLength={3} placeholder="123"/>
             </label>
-            <button type="submit" className="order-button"> 
-            {/* onClick={()=>handleSubmit()}> */}
-              submit
-
+            <button type="submit" className="order-button">
+              Pay
             </button>
-            
          </form>
-      
-         <div className="mt-12 flex flex-row justify-between ">
-         
-            <div>
-            
-          </div>
-  
-          </div>
          </div>
     )
   }
-export default checkout
+export default checkout;*/
